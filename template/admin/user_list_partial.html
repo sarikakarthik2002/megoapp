@@ -1,0 +1,50 @@
+{% comment %} {% for user in users %}
+<tr>
+    <td>{{ user.username }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.first_name }} {{ user.last_name }}</td>
+    <td>{{ user.phone_number|default:"-" }}</td>
+    <td>{{ user.address|default:"-" }}</td>
+    <td>{{ user.date_joined|date:"d M Y" }}</td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="6" class="text-center">No users found.</td>
+</tr>
+{% endfor %} {% endcomment %}
+{% for user in users %}
+<tr>
+    <td data-label="Username">{{ user.username }}</td>
+    <td data-label="First Name">{{ user.first_name }}</td>
+    <td data-label="Last Name">{{ user.last_name }}</td>
+    <td data-label="Email">{{ user.email }}</td>
+    <td data-label="Phone">{{ user.phone_number }}</td>
+    <td data-label="Active">
+        <span class="status-icon status-{{ user.is_active|yesno:'true,false' }}">
+            {{ user.is_active|yesno:"✓,✕" }}
+        </span>
+    </td>
+    <td data-label="Staff">
+        <span class="status-icon status-{{ user.is_staff|yesno:'true,false' }}">
+            {{ user.is_staff|yesno:"✓,✕" }}
+        </span>
+    </td>
+    <td data-label="Superuser">
+        <span class="status-icon status-{{ user.is_superuser|yesno:'true,false' }}">
+            {{ user.is_superuser|yesno:"✓,✕" }}
+        </span>
+    </td>
+    <td data-label="Date Joined">{{ user.date_joined|date:"M d, Y" }}</td>
+    <td data-label="Last Login">{{ user.last_login|date:"M d, Y" }}</td>
+    <td data-label="Actions">
+        <div class="action-buttons">
+            <a href="{% url 'userupdate' user.id %}"><button class="btn1 btn-edit">Edit</button></a>
+            <a href="{% url 'userdelete' user.id %}"><button class="btn1 btn-delete">Delete</button></a>
+        </div>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="6" class="text-center">No users found.</td>
+</tr>
+{% endfor %}

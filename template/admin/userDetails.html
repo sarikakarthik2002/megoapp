@@ -1,0 +1,262 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/admin/usersdetails.css' %}" /> 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</head>
+<body>
+    {% include "admin/header.html" %}
+   <div class="padding">
+    <a href="{% url 'usercreate' %}"><button class='btn1 btn-adddata'>add data</button></a>
+    {% comment %} <div class="user-table-container">
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Active</th>
+                    <th>Staff</th>
+                    <th>Superuser</th>
+                    <th>Date Joined</th>
+                    <th>Last Login</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in object_list %}
+                <tr>
+                    <td data-label="Username">{{ user.username }}</td>
+                    <td data-label="First Name">{{ user.first_name }}</td>
+                    <td data-label="Last Name">{{ user.last_name }}</td>
+                    <td data-label="Email">{{ user.email }}</td>
+                    <td data-label="Phone">{{ user.phone_number }}</td>
+                    <td data-label="Active">
+                        <span class="status-icon status-{{ user.is_active|yesno:'true,false' }}">
+                            {{ user.is_active|yesno:"✓,✕" }}
+                        </span>
+                    </td>
+                    <td data-label="Staff">
+                        <span class="status-icon status-{{ user.is_staff|yesno:'true,false' }}">
+                            {{ user.is_staff|yesno:"✓,✕" }}
+                        </span>
+                    </td>
+                    <td data-label="Superuser">
+                        <span class="status-icon status-{{ user.is_superuser|yesno:'true,false' }}">
+                            {{ user.is_superuser|yesno:"✓,✕" }}
+                        </span>
+                    </td>
+                    <td data-label="Date Joined">{{ user.date_joined|date:"M d, Y" }}</td>
+                    <td data-label="Last Login">{{ user.last_login|date:"M d, Y" }}</td>
+                    <td data-label="Actions">
+                        <div class="action-buttons">
+                            <a href="{% url 'userupdate' user.id %}"><button class="btn1 btn-edit">Edit</button></a>
+                            <a href="{% url 'userdelete' user.id %}"><button class="btn1 btn-delete">Delete</button></a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if is_paginated %}
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page=1" class="pagination-item">«</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="pagination-item">‹</a>
+            {% else %}
+                <span class="pagination-item disabled">«</span>
+                <span class="pagination-item disabled">‹</span>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <span class="pagination-item active">{{ num }}</span>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a href="?page={{ num }}" class="pagination-item">{{ num }}</a>
+                {% elif num == page_obj.number|add:'-3' or num == page_obj.number|add:'3' %}
+                    <span class="pagination-item pagination-ellipsis">...</span>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="pagination-item">›</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-item">»</a>
+            {% else %}
+                <span class="pagination-item disabled">›</span>
+                <span class="pagination-item disabled">»</span>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div> {% endcomment %}
+    <div class="container mt-4">
+        <div class="row mb-3">
+            <div class="col">
+                <input type="text" id="userSearch" class="form-control" placeholder="Search users...">
+            </div>
+        </div>
+        
+        <table class="table user-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Active</th>
+                    <th>Staff</th>
+                    <th>Superuser</th>
+                    <th>Date Joined</th>
+                    <th>Last Login</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                {% include "admin/user_list_partial.html" %}
+            </tbody>
+        </table>
+        {% if is_paginated %}
+<div class="pagination">
+    {% if page_obj.has_previous %}
+    <a href="?page=1" class="pagination-item">«</a>
+    <a href="?page={{ page_obj.previous_page_number }}" class="pagination-item">‹</a>
+    {% else %}
+    <span class="pagination-item disabled">«</span>
+    <span class="pagination-item disabled">‹</span>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+    <span class="pagination-item active">{{ num }}</span>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+    <a href="?page={{ num }}" class="pagination-item">{{ num }}</a>
+    {% elif num == page_obj.number|add:'-3' or num == page_obj.number|add:'3' %}
+    <span class="pagination-item pagination-ellipsis">...</span>
+    {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}" class="pagination-item">›</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-item">»</a>
+    {% else %}
+    <span class="pagination-item disabled">›</span>
+    <span class="pagination-item disabled">»</span>
+    {% endif %}
+</div>
+{% endif %}
+    </div>
+   </div>
+    <script>
+        let searchTimer;
+        let currentPage = 1;
+        
+        document.getElementById('userSearch').addEventListener('input', function(e) {
+            clearTimeout(searchTimer);
+        
+            searchTimer = setTimeout(() => {
+                const query = e.target.value;
+                currentPage = 1;
+        
+                fetchUserData(query, currentPage);
+            }, 300); // Debounce time of 300ms
+        });
+        
+        document.querySelectorAll('.pagination-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+        
+                if (e.target.classList.contains('disabled')) {
+                    return;
+                }
+        
+                if (e.target.classList.contains('prev')) {
+                    currentPage = parseInt(e.target.dataset.page);
+                } else if (e.target.classList.contains('next')) {
+                    currentPage = parseInt(e.target.dataset.page);
+                } else {
+                    currentPage = parseInt(e.target.dataset.page);
+                }
+        
+                fetchUserData(document.getElementById('userSearch').value, currentPage);
+            });
+        });
+        
+        function fetchUserData(query, page) {
+            fetch(`{% url 'usersdata' %}?query=${encodeURIComponent(query)}&page=${page}`, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('userTableBody').innerHTML = data.html;
+        
+                // Update pagination controls
+                const pageLinks = document.querySelectorAll('.pagination-item');
+                pageLinks.forEach(link => link.classList.remove('active', 'disabled'));
+        
+                const currentPageLink = document.querySelector(`.pagination-item[data-page="${data.current_page}"]`);
+                if (currentPageLink) {
+                    currentPageLink.classList.add('active');
+                }
+        
+                const prevLink = document.querySelector('.pagination-item.prev');
+                const nextLink = document.querySelector('.pagination-item.next');
+        
+                if (data.has_previous) {
+                    prevLink.dataset.page = data.current_page - 1;
+                    prevLink.classList.remove('disabled');
+                } else {
+                    prevLink.classList.add('disabled');
+                }
+        
+                if (data.has_next) {
+                    nextLink.dataset.page = data.current_page + 1;
+                    nextLink.classList.remove('disabled');
+                } else {
+                    nextLink.classList.add('disabled');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        </script>
+    {% comment %} <script>
+        let searchTimer;
+        
+        document.getElementById('userSearch').addEventListener('input', function(e) {
+            clearTimeout(searchTimer);
+            
+            searchTimer = setTimeout(() => {
+                const query = e.target.value;
+                
+                fetch(`{% url 'usersdata' %}?query=${encodeURIComponent(query)}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('userTableBody').innerHTML = data.html;
+                })
+                .catch(error => console.error('Error:', error));
+            }, 300); // Debounce time of 300ms
+        });
+        </script> {% endcomment %}
+    {% include "frontend/footer.html" %} 
+    {% include "frontend/script.html" %}
+</body>
+</html>

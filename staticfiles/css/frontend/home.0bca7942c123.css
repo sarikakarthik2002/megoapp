@@ -1,0 +1,364 @@
+@font-face {
+    font-family: 'font'; 
+    src:url("./myfont.72b3978382bd.otf"); 
+}
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'font' ,sans-serif;
+}
+body{
+    
+    background-color: black;
+    height: 100vh;
+    width: 105vw;
+    background-image: url("data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nMTUxMicgaGVpZ2h0PSc2Mzk3JyB2aWV3Qm94PScwIDAgMTUxMiA2Mzk3JyBmaWxsPSdub25lJyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnPjxnIGNsaXAtcGF0aD0ndXJsKCNjbGlwMF8yNDNfMiknPjxyZWN0IHdpZHRoPScxNTEyJyBoZWlnaHQ9JzYzOTcnIGZpbGw9JyMwYzBjMGMnIC8+PGcgb3BhY2l0eT0nMC40JyBmaWx0ZXI9J3VybCgjZmlsdGVyMF9mXzI0M18yKSc+PHBhdGggZD0nTTM4Ny4zOCAxMzcuNTUzQzM1NS4yOTcgLTEwNy43NzQgNTEzLjYyNSAtMzcxLjg5MiA3NTIuOTM1IC00MDMuMTg4Qzk5Mi4yNDYgLTQzNC40ODUgMTA4Ny4zNSAtMjczLjExNyAxMTE5LjQ0IC0yNy43OTA2QzExNTEuNTIgMjE3LjUzNiA5OTMuMjA4IC0zNi42MjI0IDc5Ni44OCAtMTAuOTQ3QzU1Ny41NjkgMjAuMzQ5NSA0MTkuNDYzIDM4Mi44OCAzODcuMzggMTM3LjU1M1onIGZpbGw9JyMyNGNmYTcnIC8+PC9nPjxnIGZpbHRlcj0ndXJsKCNmaWx0ZXIxX2ZfMjQzXzIpJz48Y2lyY2xlIGN4PScxNScgY3k9JzMxNzYnIHI9JzE4NScgZmlsbD0nIzI0Y2ZhNycgLz48L2c+PGcgZmlsdGVyPSd1cmwoI2ZpbHRlcjJfZl8yNDNfMiknPjxjaXJjbGUgY3g9JzEyNzUnIGN5PSc4NDAnIHI9JzY0JyBmaWxsPScjMjRjZmE3JyAvPjwvZz48L2c+PGRlZnM+PGZpbHRlciBpZD0nZmlsdGVyMF9mXzI0M18yJyB4PScyMzkuMjU4JyB5PSctNTUxLjA2Micgd2lkdGg9JzEwMjguMzMnIGhlaWdodD0nOTE3LjMxJyBmaWx0ZXJVbml0cz0ndXNlclNwYWNlT25Vc2UnIGNvbG9yLWludGVycG9sYXRpb24tZmlsdGVycz0nc1JHQic+PGZlRmxvb2QgZmxvb2Qtb3BhY2l0eT0nMCcgcmVzdWx0PSdCYWNrZ3JvdW5kSW1hZ2VGaXgnIC8+PGZlQmxlbmQgbW9kZT0nbm9ybWFsJyBpbj0nU291cmNlR3JhcGhpYycgaW4yPSdCYWNrZ3JvdW5kSW1hZ2VGaXgnIHJlc3VsdD0nc2hhcGUnIC8+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0nNzInIHJlc3VsdD0nZWZmZWN0MV9mb3JlZ3JvdW5kQmx1cl8yNDNfMicgLz48L2ZpbHRlcj48ZmlsdGVyIGlkPSdmaWx0ZXIxX2ZfMjQzXzInIHg9Jy03NzQnIHk9JzIzODcnIHdpZHRoPScxNTc4JyBoZWlnaHQ9JzE1NzgnIGZpbHRlclVuaXRzPSd1c2VyU3BhY2VPblVzZScgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSdzUkdCJz48ZmVGbG9vZCBmbG9vZC1vcGFjaXR5PScwJyByZXN1bHQ9J0JhY2tncm91bmRJbWFnZUZpeCcgLz48ZmVCbGVuZCBtb2RlPSdub3JtYWwnIGluPSdTb3VyY2VHcmFwaGljJyBpbjI9J0JhY2tncm91bmRJbWFnZUZpeCcgcmVzdWx0PSdzaGFwZScgLz48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSczMDInIHJlc3VsdD0nZWZmZWN0MV9mb3JlZ3JvdW5kQmx1cl8yNDNfMicgLz48L2ZpbHRlcj48ZmlsdGVyIGlkPSdmaWx0ZXIyX2ZfMjQzXzInIHg9Jzk2NycgeT0nNTMyJyB3aWR0aD0nNjE2JyBoZWlnaHQ9JzYxNicgZmlsdGVyVW5pdHM9J3VzZXJTcGFjZU9uVXNlJyBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9J3NSR0InPjxmZUZsb29kIGZsb29kLW9wYWNpdHk9JzAnIHJlc3VsdD0nQmFja2dyb3VuZEltYWdlRml4JyAvPjxmZUJsZW5kIG1vZGU9J25vcm1hbCcgaW49J1NvdXJjZUdyYXBoaWMnIGluMj0nQmFja2dyb3VuZEltYWdlRml4JyByZXN1bHQ9J3NoYXBlJyAvPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249JzEyMicgcmVzdWx0PSdlZmZlY3QxX2ZvcmVncm91bmRCbHVyXzI0M18yJyAvPjwvZmlsdGVyPjxjbGlwUGF0aCBpZD0nY2xpcDBfMjQzXzInPjxyZWN0IHdpZHRoPScxNTEyJyBoZWlnaHQ9JzYzOTcnIGZpbGw9J3doaXRlJyAvPjwvY2xpcFBhdGg+PC9kZWZzPjwvc3ZnPg==");
+    background-position: top;
+    background-size: 105vw;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+}
+
+nav{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 60px;
+    padding-right: 70px;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    background: transparent;
+}
+#right>a{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+#left{
+    width: 20vw;
+    display: flex;
+    color: #ffffff;
+    justify-content: flex-start;
+    font-size: 12px;
+    align-items: center;
+}
+img{
+    margin-right: 10px;
+}
+#right{
+    width: 28vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#right a:hover{
+    color: #24CFA6;
+}
+body::-webkit-scrollbar {
+    display: none; 
+}
+.btn{
+    padding: 5px 12px;
+    background-color: #27E0B3;
+    border: none;
+    border-radius: 50%;
+    font-family: sans-serif;
+    font-size: 1em;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btnname{
+    padding: 7px 15px;
+    background-color: #27E0B3;
+    border: none;
+    border-radius: 0.25rem;
+    font-family: sans-serif;
+    font-size: 1em;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #20b497;
+}
+.btnname:hover {
+    background-color: #20b497;
+}
+
+#full {
+    height: 40vh;
+    width: 15vw;
+    position: absolute;
+    right: 100px;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.86);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#full a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#full a:hover {
+    color: #24CFA6;
+}
+#full i:hover {
+    color: #24CFA6;
+}
+
+#username h3{
+    color: #ffffff;
+}
+
+#username h3:hover{
+    color: #24CFA6;
+    cursor: none;
+}
+
+#full #profilelink:hover{
+    color: #24CFA6;
+}
+hr{
+    width: 100%;
+}
+
+#username{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#profilelink, #logout {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.togethier{
+    display: flex; 
+    align-items: center;
+    gap: 5px; 
+}
+
+#profilelink i, #logout i {
+    color: #ffffff;
+}
+
+#main{
+    width: 100vw;
+    height: 50vh;
+    font-size: 60px;
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+    font-weight: 100;
+    line-height: 50px;
+
+}
+#first>span{
+    color: #27E0B3;
+}
+#last>span{
+    font-family:sans-serif;
+    font-style: italic;
+    font-weight: 50;
+}
+
+#side{
+    width: 150px;
+    height: 50px;
+    font-size: 10px;
+    color: #fff;
+    position: absolute;
+    top: 48vh;
+    right: 30vh;
+    
+}
+
+#sidef>span{
+    color:#27E0B3;
+font-family: sans-serif;
+}
+#sidef{
+    font-family: sans-serif;
+    font-weight: 100;
+}
+#long>button{
+    padding: 10px 30px;
+    background-color: #27E0B3;
+    border: none;
+    border-radius: 0.25rem;
+    margin-left: 37%;
+    font-family: sans-serif;
+    font-weight: 549;
+    font-size: medium;
+}
+
+
+/* Hamburger menu styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+    transition: 0.4s;
+}
+
+/* Hamburger animation */
+.hamburger.active div:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    /* ... (previous media query styles remain the same) ... */
+
+    .hamburger {
+        display: flex;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    #right {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 80px 0 20px;
+        z-index: 90;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    #right.active {
+        display: flex;
+    }
+
+    #right a {
+        margin: 15px 0;
+        font-size: 18px;
+    }
+
+    /* ... (rest of the media query styles remain the same) ... */
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    body {
+        width: 100vw;
+        background-size: cover;
+    }
+
+    nav {
+        padding: 10px 5%;
+    }
+
+    #left {
+        width: auto;
+    }
+
+    #right {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 20px 0;
+        z-index: 10;
+    }
+
+    #right.active {
+        display: flex;
+    }
+
+    #right a {
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    .hamburger {
+        display: flex;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    #main {
+        font-size: 40px;
+        text-align: center;
+        line-height: 1.2;
+        padding: 0 20px;
+    }
+
+    #side {
+        position: static;
+        width: 80%;
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    #long > button {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    #full {
+        width: 90%;
+        right: 5%;
+        left: 5%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #main {
+        font-size: 30px;
+    }
+
+    #side {
+        font-size: 12px;
+    }
+
+    #long > button {
+        font-size: small;
+        padding: 8px 20px;
+    }
+}

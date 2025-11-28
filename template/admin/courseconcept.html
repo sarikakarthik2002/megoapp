@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course List</title>
+    <link rel="stylesheet" href="{% static 'css/admin/courseconcept.css' %}" />
+    <link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+  rel="stylesheet"
+/> 
+<link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+/> 
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</head>
+<body>
+    {% include "admin/header.html" %}
+    <div id="courseconcept">
+        <h1>Enter Course List</h1>
+        <form action="" method="post">
+        {% csrf_token %}
+        <label for="course_list">Course List:</label>
+        <input type="text" id="course_list" name="courseconcept" placeholder="Enter courses">
+        <button type="submit">Submit</button>
+    </form></div>
+    {% include "frontend/script.html" %}
+</body>
+</html>

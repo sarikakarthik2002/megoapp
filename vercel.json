@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "mywebsite/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "mywebsite/wsgi.py"
+    }
+  ],
+  "env": {
+    "SECRET_KEY": "django-insecure-)s*01q(afvy5x!5^iasz_pzoeczrvvc*7dpa*m8j&97!ko!qfz",
+    "DEBUG": "False",
+    "DATABASE_URL": "postgres://postgres:dymHoBtqsuWAnmcKBkqwPGOuQYTOTVBm@autorack.proxy.rlwy.net:24306/railway",
+    "ALLOWED_HOSTS": "*",
+    "CORS_ALLOW_ALL_ORIGINS": "True",
+    "TIME_ZONE": "Asia/Kolkata"
+  }
+}
